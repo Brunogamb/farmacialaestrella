@@ -396,6 +396,12 @@ a {
     }
 }
 
+@media (max-width: 1490px) {
+    .cards-container {
+        max-width: 970px;
+    }
+}
+
 @media (max-width: 1190px) {
     header {
         padding: 10px 10px; 
