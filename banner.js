@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const banners = [
         {
-            imagen: "IMGOFERTAS/oferta banner.jpg?v=13",
+            imagen: "IMGOFERTAS/oferta banner.jpg?v=14",
             enlace: "ofertas.html",
             alt: "Oferta destacada"
         },
