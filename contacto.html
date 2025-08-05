@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Contacto | Farmacia La Estrella</title>
     <script>
-        fetch('mantenimiento.json?v=14')
+        fetch('mantenimiento.json?v=15')
         .then(response => response.json())
         .then(config => {
             if (config.enMantenimiento && window.location.pathname !== '/mantenimiento.html') {
@@ -41,7 +41,8 @@
     <!--HEADER-->
     <div role="banner"><h2 class="header__texto">Bienvenido a Farmacia La Estrella</h2></div>
     <header class="header">
-        <a class="logo" href="index.html"><img src="IMG/logocombinado.png" alt="Farmacia La Estrella"></a>
+        <div class="header__contenedor">
+            <a class="logo" href="index.html"><img src="IMG/logocombinado.png" alt="Farmacia La Estrella"></a>
             <nav class="navegacion">
                 <a href="index.html">Inicio</a>
                 <a href="ofertas.html">Ofertas</a>
@@ -50,6 +51,7 @@
             <nav class="contacto">
                 <a href="contacto.html">Contacto</a>
             </nav>
+        </div>
     </header>
     <!--BODY-->
     <main>

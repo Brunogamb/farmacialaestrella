@@ -24,7 +24,7 @@
     <link rel="canonical" href="https://www.farmacialaestrella.com.ar/" />
     <link rel="icon" href="https://www.farmacialaestrella.com.ar/IMG/logo.png" type="image/png">
     <link rel="icon" href="/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css?v=15">
+    <link rel="stylesheet" href="styles.css?v=16">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Farmacia La Estrella | Productos farmacéuticos y Ofertas en Paraná, Entre Ríos</title>
     <script type="application/ld+json">
@@ -61,7 +61,7 @@
     }
     </script>
     <script>
-        fetch('mantenimiento.json?v=14')
+        fetch('mantenimiento.json?v=15')
         .then(response => response.json())
         .then(config => {
             if (config.enMantenimiento && window.location.pathname !== '/mantenimiento.html') {
@@ -74,7 +74,8 @@
     <!--HEADER-->
     <div role="banner"><h2 class="header__texto">Bienvenido a Farmacia La Estrella</h2></div>
     <header class="header">
-        <a class="logo" href="index.html"><img src="IMG/logocombinado.png" alt="Farmacia La Estrella"></a>
+        <div class="header__contenedor">
+            <a class="logo" href="index.html"><img src="IMG/logocombinado.png" alt="Farmacia La Estrella"></a>
             <nav class="navegacion">
                 <a href="index.html">Inicio</a>
                 <a href="ofertas.html">Ofertas</a>
@@ -83,6 +84,7 @@
             <nav class="contacto">
                 <a href="contacto.html">Contacto</a>
             </nav>
+        </div>
     </header>
     <!--BODY-->
     <main>
@@ -91,49 +93,21 @@
         <section class="cards-banner"></section>
         <div class="slider">
             <div class="slide-track">
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/JERARQUICOSLogo.webp" alt="Logo 1" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/OSDELogo.webp" alt="Logo 2" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/PAMILogo.webp" alt="Logo 3" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/SwissMedicalLogo.webp" alt="Logo 4" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/ValeSaludLogo.webp" alt="Logo 5" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/OSERLogo.webp" alt="Logo 6" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/OSPELogo.webp" alt="Logo 7" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/JERARQUICOSLogo.webp" alt="Logo 1" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/OSDELogo.webp" alt="Logo 2" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/PAMILogo.webp" alt="Logo 3" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/SwissMedicalLogo.webp" alt="Logo 4" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/ValeSaludLogo.webp" alt="Logo 5" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/OSERLogo.webp" alt="Logo 6" loading="lazy">
-                </div>
-                <div class="slide">
-                    <img src="OBRAS SOCIALES/OSPELogo.webp" alt="Logo 7" loading="lazy">
-                </div>
-            </div>
+                <div class="slide"><img src="OBRAS SOCIALES/JERARQUICOSLogo.webp" alt="Logo 1" loading="lazy"></div>
+                <div class="slide"><img src="OBRAS SOCIALES/OSDELogo.webp" alt="Logo 2" loading="lazy"></div>
+                <div class="slide"><img src="OBRAS SOCIALES/PAMILogo.webp" alt="Logo 3" loading="lazy"></div>
+                <div class="slide"><img src="OBRAS SOCIALES/SwissMedicalLogo.webp" alt="Logo 4" loading="lazy"></div>
+                <div class="slide"><img src="OBRAS SOCIALES/ValeSaludLogo.webp" alt="Logo 5" loading="lazy"></div>
+                <div class="slide"><img src="OBRAS SOCIALES/OSERLogo.webp" alt="Logo 6" loading="lazy"></div>
+                <div class="slide"><img src="OBRAS SOCIALES/OSPELogo.webp" alt="Logo 7" loading="lazy"></div> 
+
+                <div class="slide"><img src="OBRAS SOCIALES/JERARQUICOSLogo.webp" alt="Logo 1" loading="lazy"></div>
+                <div class="slide"><img src="OBRAS SOCIALES/OSDELogo.webp" alt="Logo 2" loading="lazy"></div>
+                <div class="slide"><img src="OBRAS SOCIALES/PAMILogo.webp" alt="Logo 3" loading="lazy"></div>
+                <div class="slide"><img src="OBRAS SOCIALES/SwissMedicalLogo.webp" alt="Logo 4" loading="lazy"></div>
+                <div class="slide"><img src="OBRAS SOCIALES/ValeSaludLogo.webp" alt="Logo 5" loading="lazy"></div>
+                <div class="slide"><img src="OBRAS SOCIALES/OSERLogo.webp" alt="Logo 6" loading="lazy"></div>
+                <div class="slide"><img src="OBRAS SOCIALES/OSPELogo.webp" alt="Logo 7" loading="lazy"></div> 
         </div>
         <div class="box-medios-de-pago">
             <div class="medios-de-pago">
@@ -149,37 +123,39 @@
     </main>
     <!--FOOTER-->
     <footer class="footer"> 
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>NAVEGACIÓN</h4>
-                <a href="index.html">Inicio</a>
-                <a href="ofertas.html">Ofertas</a>
-                <a href="sobre-nosotros.html">Sobre nosotros</a>
-                <a href="contacto.html">Contacto</a>
+        <div class="footer__container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NAVEGACIÓN</h4>
+                    <a href="index.html">Inicio</a>
+                    <a href="ofertas.html">Ofertas</a>
+                    <a href="sobre-nosotros.html">Sobre nosotros</a>
+                    <a href="contacto.html">Contacto</a>
+                </div>
+                <div class="footer-section">
+                    <h4>UBICACION</h4>
+                    <a href="contacto.html">Italia 106
+                    <br>Paraná (3100)
+                    <br>Entre Ríos, Argentina</a>
+                </div>
+                <div class="footer-section">
+                    <h4>CONTACTO</h4>
+                    <a href="tel:+543434311060">+54 343 431 1060</a>
+                    <a href="mailto:laestrellapna@gmail.com">laestrellapna@gmail.com</a>
+                </div>
+                <div class="footer-section redes">
+                    <h4>REDES SOCIALES</h4>
+                    <a href="https://www.instagram.com/farmacia.laestrella/" target="_blank"><i class="fab fa-instagram"></i> farmacia.laestrella</a>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>UBICACION</h4>
-                <a href="contacto.html">Italia 106
-                <br>Paraná (3100)
-                <br>Entre Ríos, Argentina</a>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Farmacia La Estrella. Todos los derechos reservados. Imágenes y marcas de terceros pertenecen a sus respectivos dueños.</p>
+                <p class="dev-name">Desarrollado por <a href="https://github.com/BrunoGamb" target="_blank" class="dev-link">BrunoGamb</a></p>
             </div>
-            <div class="footer-section">
-                <h4>CONTACTO</h4>
-                <a href="tel:+543434311060">+54 343 431 1060</a>
-                <a href="mailto:laestrellapna@gmail.com">laestrellapna@gmail.com</a>
-            </div>
-            <div class="footer-section redes">
-                <h4>REDES SOCIALES</h4>
-                <a href="https://www.instagram.com/farmacia.laestrella/" target="_blank"><i class="fab fa-instagram"></i> farmacia.laestrella</a>
-            </div>
-        </div>
-        <div class="footer-divider"></div>
-        <div class="footer-bottom">
-            <p>&copy; <span id="year"></span> Farmacia La Estrella. Todos los derechos reservados. Imágenes y marcas de terceros pertenecen a sus respectivos dueños.</p>
-            <p class="dev-name">Desarrollado por <a href="https://github.com/BrunoGamb" target="_blank" class="dev-link">BrunoGamb</a></p>
         </div>
     </footer>
-    <script src="banner.js?v=14"></script>
+    <script src="banner.js?v=15"></script>
     <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
