@@ -24,7 +24,7 @@
     <link rel="canonical" href="https://www.farmacialaestrella.com.ar/" />
     <link rel="icon" href="https://www.farmacialaestrella.com.ar/IMG/logo.png" type="image/png">
     <link rel="icon" href="/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css?v=16">
+    <link rel="stylesheet" href="styles.css?v=17">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Farmacia La Estrella | Productos farmacéuticos y Ofertas en Paraná, Entre Ríos</title>
     <script type="application/ld+json">
@@ -90,7 +90,41 @@
     <main>
         <h1 class="titulo">Farmacia La Estrella</h1>
         <h2 class="subtitulo">Salud, bienestar y variedad en un solo lugar.</h2>
-        <section class="cards-banner"></section>
+        <section class="cards-banner">
+            <a href="ofertas.html" class="card-banner ofertabanner">
+                <img src="IMGOFERTAS/ofertabanner.webp" alt="Oferta destacada">
+            </a>
+
+            <div class="media-row">
+                <a href="https://www.farmaonline.com/" class="card-banner videobanner" target="_blank">
+                    <video src="VIDEO/videofarmaonline.mp4" alt="Video destacado" autoplay muted playsinline loop></video>
+                </a>
+
+                <a href="https://www.ftcheq.com.ar/" class="card-banner infobanner" target="_blank">
+                    <img src="IMG/adherido.webp" alt="Comercio adherido a FTCheq"></img>
+                </a>
+            </div>
+
+            <script>
+                (function() {
+                    const video = document.querySelector('.cards-banner .videobanner video');
+                    if (!video) return;
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                video.play().catch(() => {});
+                            } else {
+                                video.pause();
+                                video.currentTime = 0;
+                            }
+                        });
+                    }, { threshold: 0.5 });
+
+                    observer.observe(video);
+                })();
+            </script>
+        </section>
         <div class="slider">
             <div class="slide-track">
                 <div class="slide"><img src="OBRAS SOCIALES/JERARQUICOSLogo.webp" alt="Logo 1" loading="lazy"></div>
@@ -155,7 +189,7 @@
             </div>
         </div>
     </footer>
-    <script src="banner.js?v=15"></script>
+    <script src="carrusel.js?v=17"></script>
     <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
