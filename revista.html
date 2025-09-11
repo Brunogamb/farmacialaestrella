@@ -24,11 +24,11 @@
     <link rel="canonical" href="https://www.farmacialaestrella.com.ar/revista.html" />
     <link rel="icon" href="https://www.farmacialaestrella.com.ar/IMG/logo.png" type="image/png">
     <link rel="icon" href="/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css?v=19">
+    <link rel="stylesheet" href="styles.css?v=20">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Revista Digital | Farmacia La Estrella</title>
     <script>
-        fetch('mantenimiento.json?v=19')
+        fetch('mantenimiento.json?v=20')
         .then(response => response.json())
         .then(config => {
             if (config.enMantenimiento && window.location.pathname !== '/mantenimiento.html') {
@@ -161,7 +161,7 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
-    <script src="main.js?v=19"></script>
+    <script src="main.js?v=20"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
     <script>
         let currentZoom = 1;
@@ -174,11 +174,12 @@
         let startY = 0;
         let translateX = 0;
         let translateY = 0;
-        let animationId = null;
         
         let isPinching = false;
         let initialDistance = 0;
         let initialZoom = 1;
+        let lastZoom = 1;
+        let zoomCenter = { x: 0, y: 0 };
 
         function openZoom(imageSrc, pageNumber) {
             const modal = document.getElementById('zoomModal');
@@ -223,8 +224,8 @@
         }
 
         function updateImageTransform(img) {
-            img.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
-            
+            img.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${currentZoom})`;
+            img.style.transformOrigin = 'center center';
             img.classList.add('zoomed');
         }
 
@@ -293,6 +294,9 @@
             startX = e.clientX - translateX;
             startY = e.clientY - translateY;
             e.preventDefault();
+            
+            const zoomedImage = document.getElementById('zoomedImage');
+            zoomedImage.style.transition = 'none';
         }
 
         function getDistance(touches) {
@@ -311,57 +315,56 @@
         function startTouch(e) {
             e.preventDefault();
             
+            const zoomedImage = document.getElementById('zoomedImage');
+            
             if (e.touches.length === 1) {
                 isDragging = true;
                 isPinching = false;
                 const touch = e.touches[0];
                 startX = touch.clientX - translateX;
                 startY = touch.clientY - translateY;
+                
+                zoomedImage.style.transition = 'none';
             } else if (e.touches.length === 2) {
                 isDragging = false;
                 isPinching = true;
                 initialDistance = getDistance(e.touches);
                 initialZoom = currentZoom;
+                zoomCenter = getCenter(e.touches);
+                
+                zoomedImage.style.transition = 'none';
             }
         }
 
         function handleTouch(e) {
             e.preventDefault();
             
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
+            const zoomedImage = document.getElementById('zoomedImage');
             
             if (e.touches.length === 1 && isDragging && !isPinching) {
                 const touch = e.touches[0];
-                animationId = requestAnimationFrame(() => {
-                    translateX = touch.clientX - startX;
-                    translateY = touch.clientY - startY;
-                    
-                    const zoomedImage = document.getElementById('zoomedImage');
-                    updateImageTransform(zoomedImage);
-                });
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateImageTransform(zoomedImage);
+                
             } else if (e.touches.length === 2 && isPinching) {
                 const currentDistance = getDistance(e.touches);
                 const scaleChange = currentDistance / initialDistance;
                 
-                animationId = requestAnimationFrame(() => {
-                    currentZoom = Math.min(Math.max(initialZoom * scaleChange, 0.3), 5);
-                    
-                    const zoomedImage = document.getElementById('zoomedImage');
-                    updateImageTransform(zoomedImage);
-                });
+                currentZoom = Math.min(Math.max(initialZoom * scaleChange, 0.2), 6);
+                updateImageTransform(zoomedImage);
             }
         }
 
         function endTouch(e) {
+            const zoomedImage = document.getElementById('zoomedImage');
+            
             if (e.touches.length === 0) {
                 isDragging = false;
                 isPinching = false;
-                if (animationId) {
-                    cancelAnimationFrame(animationId);
-                    animationId = null;
-                }
+                
+                zoomedImage.style.transition = 'transform 0.1s ease-out';
+                
             } else if (e.touches.length === 1 && isPinching) {
                 isPinching = false;
                 isDragging = true;
@@ -376,25 +379,17 @@
             
             e.preventDefault();
             
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
             
-            animationId = requestAnimationFrame(() => {
-                translateX = e.clientX - startX;
-                translateY = e.clientY - startY;
-                
-                const zoomedImage = document.getElementById('zoomedImage');
-                updateImageTransform(zoomedImage);
-            });
+            const zoomedImage = document.getElementById('zoomedImage');
+            updateImageTransform(zoomedImage);
         }
 
         function endDrag() {
             isDragging = false;
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-                animationId = null;
-            }
+            const zoomedImage = document.getElementById('zoomedImage');
+            zoomedImage.style.transition = 'transform 0.1s ease-out';
         }
 
         document.addEventListener('DOMContentLoaded', () => {

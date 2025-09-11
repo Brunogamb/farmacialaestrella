@@ -555,6 +555,9 @@ a {
     backdrop-filter: blur(5px);
     overflow: hidden;
     touch-action: none;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
 }
 
 body.modal-open {
@@ -581,8 +584,12 @@ body.modal-open {
     object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
     cursor: grab;
+    will-change: transform;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
 }
 
 .zoom-modal img.zoomed {
