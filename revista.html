@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lee nuestra revista digital con consejos de salud, productos destacados y novedades de Farmacia La Estrella.">
+    <meta name="keywords" content="farmacia, revista, salud, consejos, productos, novedades">
+    <meta name="theme-color" content="#b9eaED">
+    <meta name="msapplication-navbutton-color" content="#b9eaED">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#b9eaED">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Farmacia La Estrella">
+    <meta property="og:title" content="Revista Digital | Farmacia La Estrella">
+    <meta property="og:description" content="Lee nuestra revista digital con consejos de salud y novedades.">
+    <meta property="og:image" content="https://www.farmacialaestrella.com.ar/IMG/logo.png">
+    <meta property="og:url" content="https://www.farmacialaestrella.com.ar/revista.html">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Revista Digital | Farmacia La Estrella">
+    <meta name="twitter:description" content="Lee nuestra revista digital con consejos de salud y novedades.">
+    <meta name="twitter:image" content="https://www.farmacialaestrella.com.ar/IMG/logo.png">
+    <link rel="canonical" href="https://www.farmacialaestrella.com.ar/revista.html" />
+    <link rel="icon" href="https://www.farmacialaestrella.com.ar/IMG/logo.png" type="image/png">
+    <link rel="icon" href="/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css?v=19">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Revista Digital | Farmacia La Estrella</title>
+    <script>
+        fetch('mantenimiento.json?v=19')
+        .then(response => response.json())
+        .then(config => {
+            if (config.enMantenimiento && window.location.pathname !== '/mantenimiento.html') {
+            window.location.href = '/mantenimiento.html';
+            }
+        });
+    </script>
+</head>
+<body>
+    <!--HEADER-->
+    <div role="banner"><h2 class="header__texto">Bienvenido a Farmacia La Estrella</h2></div>
+    <header class="header">
+        <div class="header-container">
+            <div class="menu-logo">
+                <a class="logo" href="index.html">
+                    <img src="IMG/logocombinado.png" alt="Farmacia La Estrella">
+                </a>
+            </div>
+
+            <nav class="services-nav desktop-menu">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="ofertas.html">Ofertas</a></li>
+                    <li><a href="revista.html">Revista</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+                </ul>
+            </nav>
+
+            <div class="right-bar">
+                <nav class="top-nav">
+                    <a href="contacto.html">Contacto</a>
+                </nav>
+                <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        
+        <nav class="services-nav mobile-menu" id="mobile-menu" aria-hidden="true">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="ofertas.html">Ofertas</a></li>
+                <li><a href="revista.html">Revista</a></li>
+                <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!--BODY-->
+    <main>
+        <section class="revista">
+            <h1 class="titulo">Nuestra Revista Digital</h1>
+            <p class="subtitulo">Descubrí consejos de salud, novedades y productos destacados.</p>
+            
+            <div id="loading-screen" class="loading-screen">
+                <div class="loading-content">
+                    <div class="loading-spinner"></div>
+                    <h3>Cargando revista...</h3>
+                    <div class="loading-progress">
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <span id="progress-text">0%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="clickInfo" class="click-info" style="display: none;">
+                <i class="fas fa-mouse-pointer"></i>
+                <span>Haz click en las páginas para verlas en pantalla completa</span>
+            </div>
+
+            <div id="flipbook" class="revista-container" style="display: none;"></div>
+            
+            <div id="zoomModal" class="zoom-modal">
+                <div class="zoom-modal-content">
+                    <span class="zoom-close">&times;</span>
+                    <div class="zoom-controls">
+                        <button id="zoomIn" class="zoom-btn" title="Acercar">+</button>
+                        <button id="zoomOut" class="zoom-btn" title="Alejar">−</button>
+                    </div>
+                    
+                    <button id="prevPage" class="nav-btn nav-prev" title="Página anterior">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="nextPage" class="nav-btn nav-next" title="Página siguiente">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <img id="zoomedImage" src="" alt="Página de revista ampliada" class="zoomable-image">
+                </div>
+            </div>
+        </section>
+    </main>
+    <!--FOOTER-->
+    <footer class="footer"> 
+        <div class="footer__container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NAVEGACIÓN</h4>
+                    <a href="index.html">Inicio</a>
+                    <a href="ofertas.html">Ofertas</a>
+                    <a href="revista.html">Revista</a>
+                    <a href="sobre-nosotros.html">Sobre nosotros</a>
+                    <a href="contacto.html">Contacto</a>
+                </div>
+                <div class="footer-section">
+                    <h4>UBICACION</h4>
+                    <a href="contacto.html">Italia 106
+                    <br>Paraná (3100)
+                    <br>Entre Ríos, Argentina</a>
+                </div>
+                <div class="footer-section">
+                    <h4>CONTACTO</h4>
+                    <a href="tel:+543434311060">+54 343 431 1060</a>
+                    <a href="mailto:laestrellapna@gmail.com">laestrellapna@gmail.com</a>
+                </div>
+                <div class="footer-section redes">
+                    <h4>REDES SOCIALES</h4>
+                    <a href="https://www.instagram.com/farmacia.laestrella/" target="_blank"><i class="fab fa-instagram"></i> farmacia.laestrella</a>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Farmacia La Estrella. Todos los derechos reservados. Imágenes y marcas de terceros pertenecen a sus respectivos dueños.</p>
+                <p class="dev-name">Desarrollado por <a href="https://github.com/BrunoGamb" target="_blank" class="dev-link">BrunoGamb</a></p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+    <script src="main.js?v=19"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/4.1.0/turn.min.js"></script>
+    <script>
+        let currentZoom = 1;
+        let currentPageIndex = 0;
+        let totalPagesCount = 0;
+        let pageImages = [];
+        
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+        let translateX = 0;
+        let translateY = 0;
+        let animationId = null;
+
+        function openZoom(imageSrc, pageNumber) {
+            const modal = document.getElementById('zoomModal');
+            const zoomedImage = document.getElementById('zoomedImage');
+            const pageInfo = document.getElementById('pageInfo');
+            
+            currentPageIndex = pageNumber - 1;
+            
+            zoomedImage.src = imageSrc;
+            modal.style.display = 'block';
+            
+            currentZoom = 0.6; 
+            translateX = 0;
+            translateY = 0;
+            updateImageTransform(zoomedImage);
+            
+            updateNavigationButtons();
+            
+            setupDragEvents(zoomedImage);
+            
+            document.body.classList.add('modal-open');
+            
+            const scrollY = window.scrollY;
+            document.body.style.top = `-${scrollY}px`;
+        }
+
+        function closeZoom() {
+            const modal = document.getElementById('zoomModal');
+            modal.style.display = 'none';
+            
+            document.body.classList.remove('modal-open');
+            
+            const scrollY = document.body.style.top;
+            document.body.style.top = '';
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            
+            currentZoom = 0.6;
+            translateX = 0;
+            translateY = 0;
+            const zoomedImage = document.getElementById('zoomedImage');
+            updateImageTransform(zoomedImage);
+        }
+
+        function updateImageTransform(img) {
+            img.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
+            
+            img.classList.add('zoomed');
+        }
+
+        function zoomIn() {
+            const zoomedImage = document.getElementById('zoomedImage');
+            currentZoom = Math.min(currentZoom * 1.15, 4);
+            updateImageTransform(zoomedImage);
+        }
+
+        function zoomOut() {
+            const zoomedImage = document.getElementById('zoomedImage');
+            currentZoom = Math.max(currentZoom / 1.15, 0.5);
+            updateImageTransform(zoomedImage);
+        }
+
+        function goToPreviousPage() {
+            if (currentPageIndex > 0) {
+                currentPageIndex--;
+                const zoomedImage = document.getElementById('zoomedImage');
+                zoomedImage.src = pageImages[currentPageIndex];
+                
+                currentZoom = 0.6;
+                translateX = 0;
+                translateY = 0;
+                updateImageTransform(zoomedImage);
+                
+                updateNavigationButtons();
+            }
+        }
+
+        function goToNextPage() {
+            if (currentPageIndex < totalPagesCount - 1) {
+                currentPageIndex++;
+                const zoomedImage = document.getElementById('zoomedImage');
+                zoomedImage.src = pageImages[currentPageIndex];
+                
+                currentZoom = 0.6;
+                translateX = 0;
+                translateY = 0;
+                updateImageTransform(zoomedImage);
+                
+                updateNavigationButtons();
+            }
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevPage');
+            const nextBtn = document.getElementById('nextPage');
+            
+            prevBtn.disabled = currentPageIndex === 0;
+            nextBtn.disabled = currentPageIndex === totalPagesCount - 1;
+        }
+
+        function setupDragEvents(img) {
+            img.addEventListener('mousedown', startDrag);
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', endDrag);
+            
+            img.addEventListener('touchstart', startDragTouch, { passive: false });
+            document.addEventListener('touchmove', dragTouch, { passive: false });
+            document.addEventListener('touchend', endDrag);
+        }
+
+        function startDrag(e) {
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            e.preventDefault();
+        }
+
+        function startDragTouch(e) {
+            isDragging = true;
+            const touch = e.touches[0];
+            startX = touch.clientX - translateX;
+            startY = touch.clientY - translateY;
+            e.preventDefault();
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            
+            e.preventDefault();
+            
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            
+            animationId = requestAnimationFrame(() => {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                
+                const zoomedImage = document.getElementById('zoomedImage');
+                updateImageTransform(zoomedImage);
+            });
+        }
+
+        function dragTouch(e) {
+            if (!isDragging) return;
+            
+            e.preventDefault();
+            
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            
+            const touch = e.touches[0];
+            animationId = requestAnimationFrame(() => {
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                
+                const zoomedImage = document.getElementById('zoomedImage');
+                updateImageTransform(zoomedImage);
+            });
+        }
+
+        function endDrag() {
+            isDragging = false;
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('zoomModal');
+            const closeBtn = document.querySelector('.zoom-close');
+            const zoomInBtn = document.getElementById('zoomIn');
+            const zoomOutBtn = document.getElementById('zoomOut');
+            const prevBtn = document.getElementById('prevPage');
+            const nextBtn = document.getElementById('nextPage');
+            
+            closeBtn.addEventListener('click', closeZoom);
+            zoomInBtn.addEventListener('click', zoomIn);
+            zoomOutBtn.addEventListener('click', zoomOut);
+            prevBtn.addEventListener('click', goToPreviousPage);
+            nextBtn.addEventListener('click', goToNextPage);
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal || e.target.classList.contains('zoom-modal-content')) {
+                    closeZoom();
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (modal.style.display === 'block') {
+                    switch(e.key) {
+                        case 'Escape':
+                            closeZoom();
+                            break;
+                        case '+':
+                        case '=':
+                            e.preventDefault();
+                            zoomIn();
+                            break;
+                        case '-':
+                            e.preventDefault();
+                            zoomOut();
+                            break;
+                        case 'ArrowLeft':
+                            e.preventDefault();
+                            goToPreviousPage();
+                            break;
+                        case 'ArrowRight':
+                            e.preventDefault();
+                            goToNextPage();
+                            break;
+                    }
+                }
+            });
+        });
+
+        const url = 'REVISTA/revista.pdf';
+
+        pdfjsLib.getDocument(url).promise.then(pdf => {
+            const flipbook = document.getElementById('flipbook');
+            const loadingScreen = document.getElementById('loading-screen');
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            const totalPages = pdf.numPages;
+
+            const updateProgress = (currentPage) => {
+                const percentage = Math.round((currentPage / totalPages) * 100);
+                progressFill.style.width = percentage + '%';
+                progressText.textContent = percentage + '%';
+            };
+
+            const renderPageToImage = (page, pageNumber) => {
+                const viewport = page.getViewport({ scale: 2 });
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                
+                return page.render({ canvasContext: context, viewport: viewport }).promise.then(() => {
+                    const img = document.createElement('img');
+                    const imageSrc = canvas.toDataURL();
+                    img.src = imageSrc;
+                    img.setAttribute('data-page', pageNumber);
+                    img.setAttribute('alt', `Página ${pageNumber} de la revista`);
+                    
+                    pageImages[pageNumber - 1] = imageSrc;
+                    
+                    img.addEventListener('click', () => openZoom(imageSrc, pageNumber));
+                    
+                    flipbook.appendChild(img);
+                });
+            };
+
+            const renderPagesSequentially = async () => {
+                totalPagesCount = totalPages;
+                pageImages = new Array(totalPages);
+                
+                for (let i = 1; i <= totalPages; i++) {
+                    const page = await pdf.getPage(i);
+                    await renderPageToImage(page, i);
+                    updateProgress(i);
+                }
+                
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                loadingScreen.style.display = 'none';
+                document.getElementById('clickInfo').style.display = 'flex';
+                flipbook.style.display = 'block';
+                
+                $("#flipbook").turn({
+                    width: 900,
+                    height: 600,
+                    autoCenter: true
+                });
+            };
+
+            renderPagesSequentially();
+        }).catch(error => {
+            const loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.innerHTML = `
+                <div class="loading-content">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 48px; color: #e74c3c; margin-bottom: 20px;"></i>
+                    <h3>Error al cargar la revista</h3>
+                    <p>Por favor, intenta recargar la página</p>
+                    <button onclick="location.reload()" style="
+                        background: #b9eaED; 
+                        color: white; 
+                        border: none; 
+                        padding: 12px 24px; 
+                        border-radius: 8px; 
+                        cursor: pointer; 
+                        font-size: 16px;
+                        margin-top: 20px;
+                    ">Recargar página</button>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
