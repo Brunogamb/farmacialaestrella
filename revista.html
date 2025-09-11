@@ -100,7 +100,7 @@
             
             <div id="clickInfo" class="click-info" style="display: none;">
                 <i class="fas fa-mouse-pointer"></i>
-                <span>Haz click en las páginas para verlas en pantalla completa</span>
+                <span>Haz click en las páginas para verlas en pantalla completa.</span>
             </div>
 
             <div id="flipbook" class="revista-container" style="display: none;"></div>
@@ -175,6 +175,10 @@
         let translateX = 0;
         let translateY = 0;
         let animationId = null;
+        
+        let isPinching = false;
+        let initialDistance = 0;
+        let initialZoom = 1;
 
         function openZoom(imageSrc, pageNumber) {
             const modal = document.getElementById('zoomModal');
@@ -279,9 +283,9 @@
             document.addEventListener('mousemove', drag);
             document.addEventListener('mouseup', endDrag);
             
-            img.addEventListener('touchstart', startDragTouch, { passive: false });
-            document.addEventListener('touchmove', dragTouch, { passive: false });
-            document.addEventListener('touchend', endDrag);
+            img.addEventListener('touchstart', startTouch, { passive: false });
+            document.addEventListener('touchmove', handleTouch, { passive: false });
+            document.addEventListener('touchend', endTouch);
         }
 
         function startDrag(e) {
@@ -291,12 +295,80 @@
             e.preventDefault();
         }
 
-        function startDragTouch(e) {
-            isDragging = true;
-            const touch = e.touches[0];
-            startX = touch.clientX - translateX;
-            startY = touch.clientY - translateY;
+        function getDistance(touches) {
+            const dx = touches[0].clientX - touches[1].clientX;
+            const dy = touches[0].clientY - touches[1].clientY;
+            return Math.sqrt(dx * dx + dy * dy);
+        }
+
+        function getCenter(touches) {
+            return {
+                x: (touches[0].clientX + touches[1].clientX) / 2,
+                y: (touches[0].clientY + touches[1].clientY) / 2
+            };
+        }
+
+        function startTouch(e) {
             e.preventDefault();
+            
+            if (e.touches.length === 1) {
+                isDragging = true;
+                isPinching = false;
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+            } else if (e.touches.length === 2) {
+                isDragging = false;
+                isPinching = true;
+                initialDistance = getDistance(e.touches);
+                initialZoom = currentZoom;
+            }
+        }
+
+        function handleTouch(e) {
+            e.preventDefault();
+            
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+            
+            if (e.touches.length === 1 && isDragging && !isPinching) {
+                const touch = e.touches[0];
+                animationId = requestAnimationFrame(() => {
+                    translateX = touch.clientX - startX;
+                    translateY = touch.clientY - startY;
+                    
+                    const zoomedImage = document.getElementById('zoomedImage');
+                    updateImageTransform(zoomedImage);
+                });
+            } else if (e.touches.length === 2 && isPinching) {
+                const currentDistance = getDistance(e.touches);
+                const scaleChange = currentDistance / initialDistance;
+                
+                animationId = requestAnimationFrame(() => {
+                    currentZoom = Math.min(Math.max(initialZoom * scaleChange, 0.3), 5);
+                    
+                    const zoomedImage = document.getElementById('zoomedImage');
+                    updateImageTransform(zoomedImage);
+                });
+            }
+        }
+
+        function endTouch(e) {
+            if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                }
+            } else if (e.touches.length === 1 && isPinching) {
+                isPinching = false;
+                isDragging = true;
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+            }
         }
 
         function drag(e) {
@@ -311,25 +383,6 @@
             animationId = requestAnimationFrame(() => {
                 translateX = e.clientX - startX;
                 translateY = e.clientY - startY;
-                
-                const zoomedImage = document.getElementById('zoomedImage');
-                updateImageTransform(zoomedImage);
-            });
-        }
-
-        function dragTouch(e) {
-            if (!isDragging) return;
-            
-            e.preventDefault();
-            
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
-            
-            const touch = e.touches[0];
-            animationId = requestAnimationFrame(() => {
-                translateX = touch.clientX - startX;
-                translateY = touch.clientY - startY;
                 
                 const zoomedImage = document.getElementById('zoomedImage');
                 updateImageTransform(zoomedImage);
