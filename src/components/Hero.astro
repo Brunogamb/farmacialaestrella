@@ -8,18 +8,18 @@ import videoSrc from '../assets/videos/videofarmaonline.mp4';
 <main>
     <section class="hero-cards">
         <a href="/ofertas">
-            <Image src={ofertaBanner} alt="Farmacia La Estrella - Productos farmacéuticos y ofertas en Paraná, Entre Ríos" class="offer-banner" />
+            <Image src={ofertaBanner} alt="Farmacia La Estrella - Productos farmacéuticos y ofertas en Paraná, Entre Ríos" class="offer-banner" loading="eager"/>
         </a>
 
         <div class="media-row">
-            <a href="https://www.farmaonline.com/" class="card-banner videobanner" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.farmaonline.com/" class="card-banner videobanner" target="_blank" rel="noopener noreferrer" aria-label="Visitar Farmaonline.com">
                 <video src={videoSrc} autoplay muted playsinline loop>
                     Tu navegador no soporta el elemento de video.
                 </video>
             </a>
 
-            <a href="https://www.ftcheq.com.ar/" class="ftcheq card-banner infobanner" target="_blank" rel="noopener noreferrer">
-                <Image src={adheridoFTCheq} alt="Comercio adherido a FTCheq" />
+            <a href="https://www.ftcheq.com.ar/" class="ftcheq card-banner infobanner" target="_blank" rel="noopener noreferrer" aria-label="Comercio adherido a FTCheq">
+                <Image src={adheridoFTCheq} alt="Comercio adherido a FTCheq" loading="eager"/>
             </a>
         </div>
     </section>
@@ -60,7 +60,15 @@ import videoSrc from '../assets/videos/videofarmaonline.mp4';
         border-color: var(--color-primary);
     }
 
-    .hero-cards img, .hero-cards video {
+
+    .hero-cards img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+    }
+
+    .hero-cards video {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -69,6 +77,12 @@ import videoSrc from '../assets/videos/videofarmaonline.mp4';
 
     .videobanner {
         aspect-ratio: 16 / 9;
+    }
+
+    .infobanner img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
 
     .media-row {
