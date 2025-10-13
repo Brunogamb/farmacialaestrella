@@ -8,7 +8,14 @@ import videoSrc from '../assets/videos/videofarmaonline.mp4';
 <main>
     <section class="hero-cards">
         <a href="/ofertas">
-            <Image src={ofertaBanner} alt="Farmacia La Estrella - Productos farmacéuticos y ofertas en Paraná, Entre Ríos" class="offer-banner" loading="eager"/>
+            <Image 
+                src={ofertaBanner} 
+                alt="Farmacia La Estrella - Productos farmacéuticos y ofertas en Paraná, Entre Ríos" 
+                class="offer-banner" 
+                loading="eager" 
+                fetchpriority="high"
+                sizes="(max-width: 768px) 95vw, 1220px"
+            />
         </a>
 
         <div class="media-row">
