@@ -437,6 +437,7 @@ body.modal-open {
         };
 
         img.addEventListener('touchstart', e => {
+            if (modal.style.display !== 'block') return;
             e.preventDefault();
             const t = e.touches;
             if (t.length === 1) {
@@ -453,20 +454,25 @@ body.modal-open {
             }
         }, { passive: false });
 
-        document.addEventListener('touchmove', e => {
-            e.preventDefault();
+    
+        modal.addEventListener('touchmove', e => {
+            if (modal.style.display !== 'block') return;
             const t = e.touches;
             if (t.length === 1 && state.drag.active) {
+                e.preventDefault();
                 state.drag.translateX = t[0].clientX - state.drag.startX;
                 state.drag.translateY = t[0].clientY - state.drag.startY;
                 updateTransform(img);
             } else if (t.length === 2 && state.pinch.active) {
+                e.preventDefault();
                 state.zoom = Math.min(Math.max(state.pinch.zoom * getDist(t) / state.pinch.distance, 0.2), 6);
                 updateTransform(img);
             }
+            
         }, { passive: false });
 
-        document.addEventListener('touchend', e => {
+        modal.addEventListener('touchend', e => {
+            if (modal.style.display !== 'block') return;
             if (e.touches.length === 0) {
                 state.drag.active = state.pinch.active = false;
                 img.style.transition = 'transform 0.1s ease-out';
