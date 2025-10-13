@@ -1,0 +1,146 @@
+<footer> 
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Navegación</h3>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/ofertas">Ofertas</a></li>
+                <li><a href="/revista">Revista</a></li>
+                <li><a href="/sobre-nosotros">Sobre nosotros</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section location">    
+            <h3>Ubicación</h3>
+            <a href="/contacto">
+                Italia 106
+            </a>
+            <a href="/contacto">
+                Paraná (3100)
+            </a>
+            <a href="/contacto">
+                Entre Ríos, Argentina
+            </a>
+        </div>
+
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <a href="tel:+543434311060">+54 343 431 1060</a>
+            <a href="mailto:laestrellapna@gmail.com">laestrellapna@gmail.com</a>
+        </div>
+
+        <div class="footer-section redes">
+            <h3>Redes Sociales</h3>
+            <a href="https://www.instagram.com/farmacia.laestrella/" target="_blank"><i class="fab fa-instagram"></i> farmacia.laestrella</a>
+        </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+        <p>&copy; <span id="year">{new Date().getFullYear()}</span> Farmacia La Estrella. Todos los derechos reservados. Imágenes y marcas de terceros pertenecen a sus respectivos dueños.</p>
+        <p class="dev-name">Desarrollado por <a href="https://github.com/BrunoGamb" target="_blank" class="dev-link">BrunoGamb</a></p>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+        box-shadow: 0 4px 6px var(--color-shadow);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--color-text-on-primary);
+        padding: 10px 20px;
+        text-wrap: balance;
+    }
+
+    footer h3 {
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+        font-weight: 700;
+        text-shadow: var(--color-shadow-text-on-primary);
+    }
+
+    .footer-content {
+        max-width: 1200px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        margin: 30px 0;
+    }
+
+    .footer-section ul {
+        list-style: none;
+    }
+
+    .footer-section a {
+        font-size: 1.1rem;
+        line-height: 2;
+        width: fit-content;
+        pointer-events: auto;
+        white-space: nowrap;
+        display: inline-block;
+        color: var(--color-text-on-primary);
+        font-weight: 500;
+        text-shadow: var(--color-shadow-text-on-primary);
+    }
+
+    .footer-divider {
+        margin-top: 10px;
+        width: 100%;
+        max-width: 1200px;
+        height: 1px;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0.2) 100%);
+        opacity: 0.6;
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        margin: 30px 0 10px 0;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 0.9rem;
+        line-height: 1.4;
+        text-shadow: var(--color-shadow-text-on-primary);
+    }
+
+    .dev-name {
+        margin-top: 10px;
+        color: var(--color-text-on-primary);
+    }
+
+    .dev-link {
+        font-weight: 600;
+        color: var(--color-text-on-primary);
+    }
+
+    .dev-link:hover, footer a:hover {
+        color: var(--color-primary-lighter);
+    }
+
+    @media (max-width: 1024px) {
+        .footer-content {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 736px) {
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-section {
+            margin: 16px 0;
+        }
+    }
+</style>

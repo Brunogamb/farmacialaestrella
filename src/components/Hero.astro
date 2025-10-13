@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import ofertaBanner from '../assets/ofertas/ofertabanner.webp';
+import adheridoFTCheq from '../assets/adherido.webp';
+import videoSrc from '../assets/videos/videofarmaonline.mp4';
+---
+
+<main>
+    <section class="hero-cards">
+        <a href="/ofertas">
+            <Image src={ofertaBanner} alt="Farmacia La Estrella - Productos farmacéuticos y ofertas en Paraná, Entre Ríos" class="offer-banner" />
+        </a>
+
+        <div class="media-row">
+            <a href="https://www.farmaonline.com/" class="card-banner videobanner" target="_blank" rel="noopener noreferrer">
+                <video src={videoSrc} autoplay muted playsinline loop>
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </a>
+
+            <a href="https://www.ftcheq.com.ar/" class="ftcheq card-banner infobanner" target="_blank" rel="noopener noreferrer">
+                <Image src={adheridoFTCheq} alt="Comercio adherido a FTCheq" />
+            </a>
+        </div>
+    </section>
+</main>
+
+<style>
+    main {
+        display: flex; 
+        flex-direction: column;
+        text-align: center;
+        color: var(--color-text);
+        max-width: 1220px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .hero-cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .hero-cards a {
+        overflow: hidden;
+        border-radius: 25px;
+        box-shadow: 0 4px 12px var(--color-shadow);
+        border: 2px solid var(--color-primary-lighter);
+        transition: all 0.3s ease;
+    }
+
+    .hero-cards a:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .hero-cards a:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px var(--color-shadow-hover);
+        border-color: var(--color-primary);
+    }
+
+    .hero-cards img, .hero-cards video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .videobanner {
+        aspect-ratio: 16 / 9;
+    }
+
+    .media-row {
+        display: flex;
+        gap: 20px;
+        align-items: stretch;
+        justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+        main {
+            padding: 0;
+            margin: 20px auto 40px;
+        }
+
+        .hero-cards {
+            max-width: 95%;
+            margin: auto;
+            gap: 15px;
+        }
+
+        .media-row {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .offer-banner {
+            aspect-ratio: 16 / 7;
+        }
+
+        .videobanner {
+            aspect-ratio: 13.5 / 9;
+        }
+
+        .ftcheq img {
+            max-width: 200px;
+            max-height: 200px;
+            margin: auto;
+            border-radius: 25px;
+            border: 2px solid var(--color-primary-lighter);
+            box-shadow: 0 4px 12px var(--color-shadow);
+            transition: all 0.3s ease;
+        }
+    }
+</style>

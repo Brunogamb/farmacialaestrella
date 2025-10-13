@@ -1,0 +1,54 @@
+---
+import Layout from "../layouts/Layout.astro"
+import PageHeader from "../components/PageHeader.astro"
+import { Image } from 'astro:assets';
+import Local from '../assets/local.webp';
+---
+
+<Layout title="Sobre Nosotros - Farmacia La Estrella">
+    <div>
+        <PageHeader 
+            title="Farmacia La Estrella" 
+            subtitle="Todo lo que necesitás en un solo lugar" 
+        />
+    <p>"Somos una farmacia con años de trayectoria, dedicada a cuidar el bienestar de nuestros clientes. Además de medicamentos, ofrecemos una amplia gama de productos que incluye artículos de cuidado personal y elementos de uso cotidiano. Nos caracteriza una atención cercana y comprometida. Nos esforzamos día a día para ser un espacio confiable, cercano y adaptado a las necesidades de toda la familia."</p>
+    <Image src={Local} alt="Imagen del local de Farmacia La Estrella" class="about-image" loading="lazy" />
+    </div>
+</Layout>	
+
+<style>
+    div {
+        display: flex;
+        flex-direction: column;
+        min-height: 60vh;
+    }
+
+    p {
+        max-width: 800px;
+        margin: 0 auto 40px;
+        padding: 0 20px;
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: var(--color-text);
+        text-align: center;
+        text-wrap: balance;
+    }
+
+    .about-image {
+        display: block;
+        max-width: 600px;
+        width: 95%;
+        height: auto;
+        margin: 0 auto 60px;
+        border-radius: 25px;
+        border: 2px solid var(--color-primary-lighter);
+        box-shadow: 0 8px 24px var(--color-shadow);
+    }
+
+    @media (max-width: 1024px) {
+        p {
+            font-size: 1.1rem;
+            margin: 0 auto 30px;
+        }
+    }
+</style>

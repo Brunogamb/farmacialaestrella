@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Carpeta temporal de optimización de ofertas
+temp-ofertas/*
+!temp-ofertas/.gitignore
+
+# Script de optimización (solo para desarrollo)
+scripts/optimize-offers.js

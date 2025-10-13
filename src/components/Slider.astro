@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import JerarquicosLogo from '../assets/obras-sociales/JERARQUICOSLogo.webp';
+import IOSPERLogo from '../assets/obras-sociales/IOSPERLogo.webp';
+import OSDELogo from '../assets/obras-sociales/OSDELogo.webp';
+import OSERLogo from '../assets/obras-sociales/OSERLogo.webp';
+import OSPELogo from '../assets/obras-sociales/OSPELogo.webp';
+import PAMILogo from '../assets/obras-sociales/PAMILogo.webp';
+import SwissMedicalLogo from '../assets/obras-sociales/SwissMedicalLogo.webp';
+import ValeSaludLogo from '../assets/obras-sociales/ValeSaludLogo.webp';
+---
+
+<div class="slider">
+    <div class="slide-track">
+        <div class="slide"><Image src={JerarquicosLogo} alt="Jerárquicos Salud" loading="lazy" /></div>
+        <div class="slide"><Image src={IOSPERLogo} alt="IOSPER" loading="lazy" /></div>
+        <div class="slide"><Image src={OSDELogo} alt="OSDE" loading="lazy" /></div>
+        <div class="slide"><Image src={OSERLogo} alt="OSER" loading="lazy" /></div>
+        <div class="slide"><Image src={OSPELogo} alt="OSPE" loading="lazy" /></div>
+        <div class="slide"><Image src={PAMILogo} alt="PAMI" loading="lazy" /></div>
+        <div class="slide"><Image src={SwissMedicalLogo} alt="Swiss Medical" loading="lazy" /></div>
+        <div class="slide"><Image src={ValeSaludLogo} alt="Vale Salud" loading="lazy" /></div>
+        
+        <div class="slide"><Image src={JerarquicosLogo} alt="Jerárquicos Salud" loading="lazy" /></div>
+        <div class="slide"><Image src={IOSPERLogo} alt="IOSPER" loading="lazy" /></div>
+        <div class="slide"><Image src={OSDELogo} alt="OSDE" loading="lazy" /></div>
+        <div class="slide"><Image src={OSERLogo} alt="OSER" loading="lazy" /></div>
+        <div class="slide"><Image src={OSPELogo} alt="OSPE" loading="lazy" /></div>
+        <div class="slide"><Image src={PAMILogo} alt="PAMI" loading="lazy" /></div>
+        <div class="slide"><Image src={SwissMedicalLogo} alt="Swiss Medical" loading="lazy" /></div>
+        <div class="slide"><Image src={ValeSaludLogo} alt="Vale Salud" loading="lazy" /></div>
+
+        <div class="slide"><Image src={JerarquicosLogo} alt="Jerárquicos Salud" loading="lazy" /></div>
+        <div class="slide"><Image src={IOSPERLogo} alt="IOSPER" loading="lazy" /></div>
+    </div>
+</div>
+
+<style>
+.slider {
+    width: 100%;
+    margin: 40px auto;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.slider .slide-track {
+    display: flex;
+    animation: scroll 30s linear infinite;
+    gap: 60px;
+    padding: 20px 0;
+    height: 60px;
+}
+
+.slide {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.slide img {
+    max-width: 140px;
+    object-fit: contain;
+    transition: 0.2s ease;
+}
+
+@keyframes scroll{
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-1592px);
+    }
+}
+</style>

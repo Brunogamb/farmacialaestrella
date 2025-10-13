@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro"
+import PageHeader from "../components/PageHeader.astro"
+import OfferCard from "../components/OfferCard.astro"
+---
+
+<Layout title="Ofertas - Farmacia La Estrella | Hasta 50% OFF en productos seleccionados">
+    <div>
+        <PageHeader 
+            title="Ofertas del Mes" 
+            subtitle="Aprovechá nuestras promociones en productos farmacéuticos y más" 
+        />
+        <OfferCard />
+    </div>
+</Layout>	
+
+<style>
+    div {
+        display: flex;
+        flex-direction: column;
+        min-height: 60vh;
+    }
+</style>

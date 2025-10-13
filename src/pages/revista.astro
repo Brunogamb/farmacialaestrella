@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro"
+import PageHeader from "../components/PageHeader.astro"
+import RevistaViewer from "../components/RevistaViewer.astro"
+---
+
+<Layout title="Revista Digital - Farmacia La Estrella">
+    <div>
+        <PageHeader 
+            title="Revista Digital" 
+            subtitle="Descubrí ofertas, novedades y productos destacados" 
+        />
+        <RevistaViewer />
+    </div>
+</Layout>	
+
+<style>
+    div {
+        display: flex;
+        flex-direction: column;
+        min-height: 60vh;
+    }
+</style>

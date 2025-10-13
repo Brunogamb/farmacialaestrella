@@ -1,0 +1,4 @@
+# Ignorar imágenes temporales, pero mantener la carpeta y el README
+*
+!.gitignore
+!README.md

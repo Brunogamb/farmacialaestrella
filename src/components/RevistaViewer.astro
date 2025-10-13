@@ -1,0 +1,543 @@
+<section class="revista"> 
+    <div id="loading-content" class="loading-content">
+        <div class="loading-spinner"></div>
+            <h3>Cargando revista...</h3>
+        <div id="progress-fill" class="progress-fill"></div>
+        <span id="progress-text">0%</span>
+    </div>
+    
+    <div id="clickInfo" class="click-info" style="display: none;">
+        <i class="fas fa-mouse-pointer"></i>
+        <span>Haz click en las páginas para verlas en pantalla completa.</span>
+    </div>
+
+    <div id="flipbook" class="revista-container" style="display: none;"></div>
+            
+    <div id="zoomModal" class="zoom-modal">
+        <div class="zoom-modal-content">
+            <span class="zoom-close">&times;</span>
+            <div class="zoom-controls">
+                <button id="zoomIn" class="zoom-btn" title="Acercar">+</button>
+                <button id="zoomOut" class="zoom-btn" title="Alejar">−</button>
+            </div>
+            
+            <button id="prevPage" class="nav-btn nav-prev" title="Página anterior">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <button id="nextPage" class="nav-btn nav-next" title="Página siguiente">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <img id="zoomedImage" src="" alt="Página de revista ampliada" class="zoomable-image">
+        </div>
+    </div>
+</section>
+
+<style>
+.revista {
+    padding: 0 20px;
+}
+
+.revista-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    border: 2px solid var(--color-primary-lighter);
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px var(--color-shadow);
+    transition: all 0.3s ease;
+}
+
+.revista-container:hover {
+    box-shadow: 0 8px 20px var(--color-shadow-hover);
+    border-color: var(--color-primary);
+}
+
+.revista-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    background: var(--color-white);
+    border-radius: 25px;
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 40px 20px;
+    box-shadow: 0 4px 12px var(--color-shadow);
+    border: 2px solid var(--color-primary-lighter);
+    text-align: center;
+    color: var(--color-text);
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--color-primary-lighter);
+    border-top: 4px solid var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.loading-content p {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: 30px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.3s ease;
+    height: 8px;
+    border: 1px solid var(--color-primary-light);
+    overflow: hidden;
+    margin-bottom: 10px;
+    max-width: 300px;
+}
+
+#progress-text {
+    font-size: 0.8rem;
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.zoom-modal {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    overflow: hidden;
+    touch-action: none;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+}
+
+body.modal-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.zoom-modal-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.zoom-modal img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    cursor: grab;
+    will-change: transform;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+}
+
+.zoom-modal img.zoomed {
+    max-width: none;
+    max-height: none;
+    cursor: grab;
+}
+
+.zoom-modal img:active {
+    cursor: grabbing;
+}
+
+.zoom-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--color-white);
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.zoom-close:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.zoom-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 25px;
+}
+
+.zoom-btn {
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.zoom-btn:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: scale(1.1);
+}
+
+.zoom-btn:active {
+    transform: scale(0.95);
+}
+
+.click-info {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: var(--color-white);
+    padding: 15px 25px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    max-width: 280px;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 12px var(--color-shadow);
+    text-shadow: var(--color-shadow-text-on-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    animation: fadeInBounce 0.6s ease-out;
+}
+
+.click-info i {
+    font-size: 1.1rem;
+    color: var(--color-white);
+}
+
+@keyframes fadeInBounce {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.9);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(5px) scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 10000;
+}
+
+.nav-btn:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.nav-prev {
+    left: 30px;
+}
+
+.nav-next {
+    right: 30px;
+}
+
+.nav-btn:disabled {
+    background: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+    transform: translateY(-50%) scale(1);
+}
+
+.nav-btn:disabled:hover {
+    background: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1);
+}
+</style>
+
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script is:inline>
+(function() {
+    let state = {
+        zoom: 0.6,
+        pageIndex: 0,
+        totalPages: 0,
+        images: [],
+        hires: {},
+        loadedCount: 0,
+        drag: { active: false, startX: 0, startY: 0, translateX: 0, translateY: 0 },
+        pinch: { active: false, distance: 0, zoom: 1 }
+    };
+
+    const $ = id => document.getElementById(id);
+    const getImg = () => $('zoomedImage');
+    const getDist = t => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+
+    const updateTransform = img => {
+        img.style.transform = `translate3d(${state.drag.translateX}px, ${state.drag.translateY}px, 0) scale(${state.zoom})`;
+        img.classList.add('zoomed');
+    };
+
+    const resetZoom = () => {
+        state.zoom = 0.6;
+        state.drag.translateX = state.drag.translateY = 0;
+    };
+
+    const updateNavBtns = () => {
+        $('prevPage').disabled = state.pageIndex === 0;
+        $('nextPage').disabled = state.pageIndex === state.totalPages - 1;
+    };
+
+    const changePage = offset => {
+        const newIndex = state.pageIndex + offset;
+        if (newIndex >= 0 && newIndex < state.totalPages) {
+            state.pageIndex = newIndex;
+            const img = getImg();
+            img.src = state.images[state.pageIndex];
+            resetZoom();
+            updateTransform(img);
+            updateNavBtns();
+        }
+    };
+
+    window.openZoom = (src, num) => {
+        state.pageIndex = num - 1;
+        const img = getImg();
+        img.src = src;
+        $('zoomModal').style.display = 'block';
+        resetZoom();
+        updateTransform(img);
+        updateNavBtns();
+        document.body.classList.add('modal-open');
+        document.body.style.top = `-${window.scrollY}px`;
+    };
+
+    window.closeZoom = () => {
+        $('zoomModal').style.display = 'none';
+        document.body.classList.remove('modal-open');
+        const scrollY = parseInt(document.body.style.top || '0');
+        document.body.style.top = '';
+        window.scrollTo(0, -scrollY);
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = $('zoomModal');
+        const img = getImg();
+
+        document.querySelector('.zoom-close').onclick = closeZoom;
+        $('zoomIn').onclick = () => { state.zoom = Math.min(state.zoom * 1.15, 4); updateTransform(img); };
+        $('zoomOut').onclick = () => { state.zoom = Math.max(state.zoom / 1.15, 0.5); updateTransform(img); };
+        $('prevPage').onclick = () => changePage(-1);
+        $('nextPage').onclick = () => changePage(1);
+        
+        modal.onclick = e => (e.target === modal || e.target.classList.contains('zoom-modal-content')) && closeZoom();
+
+        img.onmousedown = e => {
+            state.drag.active = true;
+            state.drag.startX = e.clientX - state.drag.translateX;
+            state.drag.startY = e.clientY - state.drag.translateY;
+            img.style.transition = 'none';
+            e.preventDefault();
+        };
+
+        document.onmousemove = e => {
+            if (!state.drag.active) return;
+            state.drag.translateX = e.clientX - state.drag.startX;
+            state.drag.translateY = e.clientY - state.drag.startY;
+            updateTransform(img);
+            e.preventDefault();
+        };
+
+        document.onmouseup = () => {
+            state.drag.active = false;
+            img.style.transition = 'transform 0.1s ease-out';
+        };
+
+        img.addEventListener('touchstart', e => {
+            e.preventDefault();
+            const t = e.touches;
+            if (t.length === 1) {
+                state.drag.active = true;
+                state.pinch.active = false;
+                state.drag.startX = t[0].clientX - state.drag.translateX;
+                state.drag.startY = t[0].clientY - state.drag.translateY;
+                img.style.transition = 'none';
+            } else if (t.length === 2) {
+                state.drag.active = false;
+                state.pinch.active = true;
+                state.pinch.distance = getDist(t);
+                state.pinch.zoom = state.zoom;
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchmove', e => {
+            e.preventDefault();
+            const t = e.touches;
+            if (t.length === 1 && state.drag.active) {
+                state.drag.translateX = t[0].clientX - state.drag.startX;
+                state.drag.translateY = t[0].clientY - state.drag.startY;
+                updateTransform(img);
+            } else if (t.length === 2 && state.pinch.active) {
+                state.zoom = Math.min(Math.max(state.pinch.zoom * getDist(t) / state.pinch.distance, 0.2), 6);
+                updateTransform(img);
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchend', e => {
+            if (e.touches.length === 0) {
+                state.drag.active = state.pinch.active = false;
+                img.style.transition = 'transform 0.1s ease-out';
+            } else if (e.touches.length === 1 && state.pinch.active) {
+                state.pinch.active = false;
+                state.drag.active = true;
+                state.drag.startX = e.touches[0].clientX - state.drag.translateX;
+                state.drag.startY = e.touches[0].clientY - state.drag.translateY;
+            }
+        });
+
+        document.onkeydown = e => {
+            if (modal.style.display !== 'block') return;
+            const actions = {
+                'Escape': closeZoom,
+                '+': () => { state.zoom = Math.min(state.zoom * 1.15, 4); updateTransform(img); },
+                '=': () => { state.zoom = Math.min(state.zoom * 1.15, 4); updateTransform(img); },
+                '-': () => { state.zoom = Math.max(state.zoom / 1.15, 0.5); updateTransform(img); },
+                'ArrowLeft': () => changePage(-1),
+                'ArrowRight': () => changePage(1)
+            };
+            if (actions[e.key]) {
+                e.preventDefault();
+                actions[e.key]();
+            }
+        };
+    });
+
+    pdfjsLib.getDocument('/revista.pdf').promise.then(async pdf => {
+        const flipbook = $('flipbook');
+        const loading = $('loading-content');
+        const progress = $('progress-fill');
+        const progressText = $('progress-text');
+        
+        state.totalPages = pdf.numPages;
+        state.images = new Array(state.totalPages);
+
+        for (let i = 1; i <= state.totalPages; i++) {
+            const page = await pdf.getPage(i);
+            const viewport = page.getViewport({ scale: 2 });
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            
+            await page.render({ canvasContext: ctx, viewport }).promise;
+            
+            const img = new Image();
+            const src = canvas.toDataURL();
+            img.src = src;
+            img.setAttribute('data-page', i);
+            img.onclick = () => openZoom(src, i);
+            state.images[i - 1] = src;
+            flipbook.appendChild(img);
+            
+            const pct = Math.round((i / state.totalPages) * 100);
+            progress.style.width = pct + '%';
+            progressText.textContent = pct + '%';
+        }
+
+        setTimeout(() => {
+            loading.style.display = 'none';
+            $('clickInfo').style.display = 'flex';
+            flipbook.style.display = 'block';
+        }, 500);
+    }).catch(() => {
+        $('loading-content').innerHTML = `<div class="loading-content">
+            <i class="fas fa-exclamation-triangle" style="font-size:4rem;color:#e74c3c;margin-bottom:20px"></i>
+            <h3>Error al cargar la revista</h3>
+            <button onclick="location.reload()" style="background:var(--color-primary);color:var(--color-white);border:none;padding:12px 24px;border-radius:8px;cursor:pointer;margin-top:20px">Recargar</button>
+        </div>`;
+    });
+})();
+</script>

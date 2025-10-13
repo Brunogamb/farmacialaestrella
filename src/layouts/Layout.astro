@@ -1,22 +1,150 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import logo from '../assets/logocombinado.png';
+
+const { title } = Astro.props;
+const site = Astro.site?.toString() ?? 'https://www.farmacialaestrella.com.ar/';
+const logoUrl = new URL(logo.src, site).toString();
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
+<html lang="es">
+<head>
+	<title>{title}</title>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#b9eaED">
+	<meta name="msapplication-navbutton-color" content="#b9eaED">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#b9eaED">
+    <meta name="description" content="Farmacia La Estrella en Paraná, Entre Ríos: productos farmacéuticos, ofertas mensuales, atención personalizada, variedad de obras sociales y más.">
+	<meta name="author" content="Farmacia La Estrella">
+	<meta name="robots" content="index, follow">
+    <meta name="keywords" content="farmacia, salud, medicamentos, ofertas, atención al cliente">
+
+    <meta property="og:site_name" content="Farmacia La Estrella">
+    <meta property="og:title" content="Farmacia La Estrella">
+    <meta property="og:description" content="Farmacia La Estrella: productos farmacéuticos, ofertas y atención personalizada.">
+    <meta property="og:image" content={logoUrl}>
+    <meta property="og:url" content="https://www.farmacialaestrella.com.ar/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Farmacia La Estrella">
+    <meta name="twitter:description" content="Farmacia La Estrella: productos farmacéuticos, ofertas y atención personalizada.">
+    <meta name="twitter:image" content={logoUrl}>
+    <link rel="canonical" href={site} />
+    <link rel="icon" href={logoUrl} type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Farmacia La Estrella | Productos farmacéuticos y Ofertas en Paraná, Entre Ríos</title>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Pharmacy",
+        "name": "Farmacia La Estrella",
+        "image": "https://www.farmacialaestrella.com.ar/IMG/logo.png",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Italia 106",
+            "addressLocality": "Paraná",
+            "addressRegion": "Entre Ríos",
+            "postalCode": "3100",
+            "addressCountry": "AR"
+        },
+        "telephone": "+54 343 431 1060",
+        "email": "laestrellapna@gmail.com",
+        "url": "https://www.farmacialaestrella.com.ar/",
+        "openingHours": "Lu-Vi 08:00-20:00 Sa 8:00-13:00",
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "-31.7413",
+            "longitude": "-60.5117"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Farmacia La Estrella",
+        "url": "https://www.farmacialaestrella.com.ar/"
+    }
+    </script>
+</head>
 	<body>
+		<Header />
 		<slot />
+		<Footer />
 	</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+<style is:global>
+:root {
+	--color-primary: #4dd4d8;        
+	--color-primary-light: #b9eaed; 
+	--color-primary-lighter: #e0f7f8; 
+	--color-primary-dark: #2ba8ac;  
+	--color-accent: #1e8a8e;       
+	--color-text: #2c3e50;           
+	--color-text-light: #5a6c7d;    
+	--color-bg: #f8fcfc;           
+	--color-white: #ffffff;
+	--color-text-on-primary: #ffffff;
+	--color-shadow-text-on-primary: 0 1px 3px rgba(0, 0, 0, 0.2);
+	--color-shadow: rgba(77, 212, 216, 0.15);
+	--color-shadow-hover: rgba(77, 212, 216, 0.25);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+    font-family: 'Outfit', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    overflow-x: hidden;
+}
+
+header, main, footer {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main {
+	flex: 1;
+	opacity: 0;
+	animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+	to {
+		opacity: 1;
 	}
+}
+
+#flipbook img, #flipbook .page img, .revista-container img {
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+}
 </style>

@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro"
+import PageHeader from "../components/PageHeader.astro"
+import ContactInfo from "../components/ContactInfo.astro"
+---
+
+<Layout title="Contacto - Farmacia La Estrella">
+    <div>
+        <PageHeader 
+            title="Contactanos" 
+            subtitle="Formas de contacto y ubicación" 
+        />
+        <ContactInfo />
+    </div>
+</Layout>	
+
+<style>
+    div {
+        display: flex;
+        flex-direction: column;
+        min-height: 60vh;
+    }
+</style>

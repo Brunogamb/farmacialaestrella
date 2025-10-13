@@ -6,9 +6,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "optimize-offers": "node scripts/optimize-offers.js"
   },
   "dependencies": {
     "astro": "^5.14.4"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.4"
   }
 }
