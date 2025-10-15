@@ -10,7 +10,8 @@
     "optimize-offers": "node scripts/optimize-offers.js"
   },
   "dependencies": {
-    "astro": "^5.14.4"
+    "astro": "^5.14.4",
+    "@astrojs/sitemap": "^3.2.0"
   },
   "devDependencies": {
     "sharp": "^0.34.4"
