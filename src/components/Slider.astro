@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import avalianLogo from '../assets/obras-sociales/avalianLogo.webp'
 import JerarquicosLogo from '../assets/obras-sociales/JERARQUICOSLogo.webp';
 import IOSPERLogo from '../assets/obras-sociales/IOSPERLogo.webp';
 import OSDELogo from '../assets/obras-sociales/OSDELogo.webp';
@@ -12,6 +13,7 @@ import ValeSaludLogo from '../assets/obras-sociales/ValeSaludLogo.webp';
 
 <div class="slider">
     <div class="slide-track">
+        <div class="slide"><Image src={avalianLogo} alt="Avalian" loading="lazy" /></div>
         <div class="slide"><Image src={JerarquicosLogo} alt="Jerárquicos Salud" loading="lazy" /></div>
         <div class="slide"><Image src={IOSPERLogo} alt="IOSPER" loading="lazy" /></div>
         <div class="slide"><Image src={OSDELogo} alt="OSDE" loading="lazy" /></div>
@@ -21,6 +23,7 @@ import ValeSaludLogo from '../assets/obras-sociales/ValeSaludLogo.webp';
         <div class="slide"><Image src={SwissMedicalLogo} alt="Swiss Medical" loading="lazy" /></div>
         <div class="slide"><Image src={ValeSaludLogo} alt="Vale Salud" loading="lazy" /></div>
         
+        <div class="slide"><Image src={avalianLogo} alt="Avalian" loading="lazy" /></div>
         <div class="slide"><Image src={JerarquicosLogo} alt="Jerárquicos Salud" loading="lazy" /></div>
         <div class="slide"><Image src={IOSPERLogo} alt="IOSPER" loading="lazy" /></div>
         <div class="slide"><Image src={OSDELogo} alt="OSDE" loading="lazy" /></div>
@@ -30,8 +33,8 @@ import ValeSaludLogo from '../assets/obras-sociales/ValeSaludLogo.webp';
         <div class="slide"><Image src={SwissMedicalLogo} alt="Swiss Medical" loading="lazy" /></div>
         <div class="slide"><Image src={ValeSaludLogo} alt="Vale Salud" loading="lazy" /></div>
 
+        <div class="slide"><Image src={avalianLogo} alt="Avalian" loading="lazy" /></div>
         <div class="slide"><Image src={JerarquicosLogo} alt="Jerárquicos Salud" loading="lazy" /></div>
-        <div class="slide"><Image src={IOSPERLogo} alt="IOSPER" loading="lazy" /></div>
     </div>
 </div>
 
@@ -72,7 +75,7 @@ import ValeSaludLogo from '../assets/obras-sociales/ValeSaludLogo.webp';
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-1592px);
+        transform: translateX(-1756px);
     }
 }
 </style>
