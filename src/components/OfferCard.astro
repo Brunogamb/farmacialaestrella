@@ -35,7 +35,8 @@ import oferta11 from '../assets/ofertas/oferta-11.webp';
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
-        max-width: 1200px;
+        max-width: 1240px;
+        padding: 0 20px;
         margin: 40px auto;
     }
 
@@ -108,9 +109,10 @@ import oferta11 from '../assets/ofertas/oferta-11.webp';
 
     @media (max-width: 768px) {
         .offer-card {
+            padding: 0;
             grid-template-columns: 1fr;
-            max-width: 95%;
             margin: 20px auto;
+            max-width: 95%;
         }
 
         .scroll-to-top {
