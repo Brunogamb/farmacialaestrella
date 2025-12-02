@@ -1,8 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import ofertaBanner from '../assets/ofertas/ofertabanner.webp';
-import adheridoFTCheq from '../assets/adherido.webp';
 import videoSrc from '../assets/videos/videofarmaonline.mp4';
+import consumax10off from '../assets/consumax10off.webp';
+import adheridoFTCheq from '../assets/adherido.webp';
 ---
 
 <main>
@@ -18,17 +19,25 @@ import videoSrc from '../assets/videos/videofarmaonline.mp4';
             />
         </a>
 
-        <div class="media-row">
-            <a href="https://www.farmaonline.com/" class="card-banner videobanner" target="_blank" rel="noopener noreferrer" aria-label="Visitar Farmaonline.com">
-                <video src={videoSrc} autoplay muted playsinline loop>
-                    Tu navegador no soporta el elemento de video.
-                </video>
-            </a>
+        <a href="/ofertas">
+            <Image 
+            src={consumax10off} 
+            alt="Promoción: Compra más y ahorra más con nuestro descuento por volumen" 
+            loading="eager" 
+            fetchpriority="high"
+            sizes="(max-width: 768px) 95vw, 1220px"
+        />
+        </a>
 
-            <a href="https://www.ftcheq.com.ar/" class="ftcheq card-banner infobanner" target="_blank" rel="noopener noreferrer" aria-label="Comercio adherido a FTCheq">
-                <Image src={adheridoFTCheq} alt="Comercio adherido a FTCheq" loading="eager"/>
-            </a>
-        </div>
+        <a href="https://www.farmaonline.com/" class="card-banner videobanner" target="_blank" rel="noopener noreferrer" aria-label="Visitar Farmaonline.com">
+            <video src={videoSrc} autoplay muted playsinline loop>
+                Tu navegador no soporta el elemento de video.
+            </video>
+        </a>
+
+        <a href="https://www.ftcheq.com.ar/" class="ftcheq card-banner infobanner" target="_blank" rel="noopener noreferrer" aria-label="Comercio adherido a FTCheq">
+            <Image src={adheridoFTCheq} alt="Comercio adherido a FTCheq" loading="eager"/>
+        </a>
     </section>
 </main>
 
@@ -45,8 +54,10 @@ import videoSrc from '../assets/videos/videofarmaonline.mp4';
 
     .hero-cards {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1.88fr 1fr;
+        grid-auto-rows: auto;
         gap: 20px;
+        align-items: start;
     }
 
     .hero-cards a {
@@ -57,8 +68,27 @@ import videoSrc from '../assets/videos/videofarmaonline.mp4';
         transition: all 0.3s ease;
     }
 
-    .hero-cards a:first-child {
-        grid-column: 1 / -1;
+    .hero-cards a:nth-child(1) {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .hero-cards a:nth-child(2) {
+        grid-column: 2;
+        grid-row: 1 / 3;
+        aspect-ratio: 1 / 1.32;
+        width: 100%;
+    }
+
+    .hero-cards a:nth-child(3) {
+        grid-column: 1;
+        grid-row: 2 / 4;
+    }
+
+    .hero-cards a:nth-child(4) {
+        grid-column: 2;
+        grid-row: 3;
+        margin: 0 auto;
     }
 
     .hero-cards a:hover {
@@ -67,11 +97,12 @@ import videoSrc from '../assets/videos/videofarmaonline.mp4';
         border-color: var(--color-primary);
     }
 
-
-    .hero-cards img {
+    .hero-cards a img,
+    .hero-cards a .astro-image {
         width: 100%;
-        height: auto;
+        height: 100%;
         object-fit: cover;
+        object-position: center;
         display: block;
     }
 
@@ -86,16 +117,13 @@ import videoSrc from '../assets/videos/videofarmaonline.mp4';
         aspect-ratio: 16 / 9;
     }
 
+    .offer-banner {
+        aspect-ratio: 15 / 6;
+    }
+
     .infobanner img {
         width: 100%;
         height: 100%;
-    }
-
-    .media-row {
-        display: flex;
-        gap: 20px;
-        align-items: stretch;
-        justify-content: center;
     }
 
     @media (max-width: 768px) {
@@ -108,11 +136,22 @@ import videoSrc from '../assets/videos/videofarmaonline.mp4';
             max-width: 95%;
             margin: auto;
             gap: 15px;
+            grid-template-columns: 1fr;
         }
 
-        .media-row {
-            flex-direction: column;
-            gap: 15px;
+        .hero-cards a:nth-child(2) {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .hero-cards a:nth-child(3) {
+            grid-column: 1;
+            grid-row: 3;
+        }
+
+        .hero-cards a:nth-child(4) {
+            grid-column: 1;
+            grid-row: 4;
         }
 
         .offer-banner {
@@ -124,12 +163,9 @@ import videoSrc from '../assets/videos/videofarmaonline.mp4';
         }
 
         .ftcheq img {
-            max-width: 200px;
-            max-height: 200px;
+            max-width: 240px;
+            max-height: 240px;
             margin: auto;
-            border-radius: 25px;
-            border: 2px solid var(--color-primary-lighter);
-            box-shadow: 0 4px 12px var(--color-shadow);
             transition: all 0.3s ease;
         }
     }
