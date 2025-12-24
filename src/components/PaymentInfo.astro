@@ -3,12 +3,11 @@
 
 <section class="payment-info">
     <h2>Medios de Pago</h2>
-    <p class="subtitle">Aceptamos múltiples formas de pago para tu comodidad</p>
     
     <div class="payment-grid">
         <div class="payment-card">
             <div class="icon-wrapper">
-                <i class="fas fa-credit-card"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
             </div>
             <h3>Tarjetas Aceptadas</h3>
             <p>Visa, Mastercard, American Express, Naranja, ConsuMax, FinanYa</p>
@@ -16,17 +15,18 @@
 
         <div class="payment-card">
             <div class="icon-wrapper">
-                <i class="fas fa-wallet"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4Z"/></svg>
             </div>
             <h3>Billeteras Digitales</h3>
-            <p>MercadoPago, pago con QR, todo tipo de transferencias</p>
+            <p>MercadoPago, pago con QR y todo tipo de transferencias bancarias</p>
         </div>
 
         <div class="payment-card">
             <div class="icon-wrapper">
-                <i class="fas fa-money-bill-wave"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </div>
             <h3>Efectivo</h3>
+            <p>Aceptamos pagos en efectivo</p>
         </div>
     </div>
 </section>
@@ -42,15 +42,8 @@
 
     h2 {
         font-size: 2.5rem;
-        margin: 20px 0 30px;
-        color: var(--color-accent);
-    }
-
-    .subtitle {
-        font-size: 1.4rem;
-        font-weight: 400;
-        color: var(--color-text-light);
-        margin-bottom: 60px;
+        margin: 20px 0 40px;
+        color: var(--color-primary-dark);
     }
 
     .payment-grid {
@@ -79,7 +72,7 @@
         justify-content: center;
     }
 
-    .icon-wrapper i {
+    .icon-wrapper {
         font-size: 2rem;
         color: var(--color-white);
     }
@@ -100,10 +93,6 @@
     @media (max-width: 1024px) {
         h2 {
             font-size: 2rem;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
         }
     }
 

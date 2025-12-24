@@ -37,7 +37,7 @@
 <style>
 .revista {
     padding: 0 20px;
-    margin-bottom: 40px;
+    margin: 40px 0;
 }
 
 .revista-container {
@@ -321,6 +321,12 @@ body.modal-open {
     color: rgba(255, 255, 255, 0.3);
     transform: translateY(-50%) scale(1);
 }
+
+    @media (max-width: 768px) {
+        .revista {
+            margin: 20px 0;
+        }
+    }
 </style>
 
 <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
