@@ -10,19 +10,37 @@ import oferta7 from '../assets/ofertas/oferta-7.webp';
 import oferta8 from '../assets/ofertas/oferta-8.webp';
 import oferta9 from '../assets/ofertas/oferta-9.webp';
 import oferta10 from '../assets/ofertas/oferta-10.webp';
+import oferta11 from '../assets/ofertas/oferta-11.webp';
+import oferta12 from '../assets/ofertas/oferta-12.webp';
+import oferta13 from '../assets/ofertas/oferta-13.webp';
+import oferta14 from '../assets/ofertas/oferta-14.webp';
+import oferta15 from '../assets/ofertas/oferta-15.webp';
+import oferta16 from '../assets/ofertas/oferta-16.webp';
+import oferta17 from '../assets/ofertas/oferta-17.webp';
+import oferta18 from '../assets/ofertas/oferta-18.webp';
+import oferta19 from '../assets/ofertas/oferta-19.webp';
+import oferta20 from '../assets/ofertas/oferta-20.webp';
+import oferta21 from '../assets/ofertas/oferta-21.webp';
+import oferta22 from '../assets/ofertas/oferta-22.webp';
+import oferta23 from '../assets/ofertas/oferta-23.webp';
+import oferta24 from '../assets/ofertas/oferta-24.webp';
+import oferta25 from '../assets/ofertas/oferta-25.webp';
+import oferta26 from '../assets/ofertas/oferta-26.webp';
+import oferta27 from '../assets/ofertas/oferta-27.webp';
+import oferta28 from '../assets/ofertas/oferta-28.webp';
+import oferta29 from '../assets/ofertas/oferta-29.webp';
 ---
 
 <article class="offer-card">
-    <Image src={oferta1} alt="Oferta 1" loading="eager"/>
-    <Image src={oferta2} alt="Oferta 2" loading="eager"/>
-    <Image src={oferta3} alt="Oferta 3" loading="eager"/>
-    <Image src={oferta4} alt="Oferta 4" loading="eager"/>
-    <Image src={oferta5} alt="Oferta 5" loading="eager"/>
-    <Image src={oferta6} alt="Oferta 6" loading="eager"/>
-    <Image src={oferta7} alt="Oferta 7" loading="lazy"/>
-    <Image src={oferta8} alt="Oferta 8" loading="lazy"/>
-    <Image src={oferta9} alt="Oferta 9" loading="lazy"/>
-    <Image src={oferta10} alt="Oferta 10" loading="lazy"/>
+    {[oferta1, oferta2, oferta3, oferta4, oferta5, oferta6, oferta7, oferta8, oferta9, oferta10, oferta11, oferta12, oferta13, oferta14, oferta15, oferta16, oferta17, oferta18, oferta19, oferta20, oferta21, oferta22, oferta23, oferta24, oferta25, oferta26, oferta27, oferta28, oferta29].map((img, index) => (
+        <div class="card-wrapper">
+            <Image 
+                src={img} 
+                alt={`Oferta ${index + 1}`} 
+                loading={index < 6 ? "eager" : "lazy"} 
+            />
+        </div>
+    ))}
 </article>
 <button id="scrollToTop" class="scroll-to-top" aria-label="Volver arriba">
     <i class="fas fa-chevron-up"></i>
@@ -38,13 +56,17 @@ import oferta10 from '../assets/ofertas/oferta-10.webp';
         margin: 40px auto;
     }
 
-    .offer-card img {
+    .card-wrapper {
         width: 100%;
-        height: auto;
+        height: 680px;
+        overflow: hidden; 
         border-radius: 25px;
         box-shadow: 0 4px 12px var(--color-shadow);
         border: 2px solid var(--color-primary-lighter);
-        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 40px; /* Remover al cambiar imagenes nuevamente */
     }
 
     .scroll-to-top {
