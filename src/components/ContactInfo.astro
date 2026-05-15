@@ -98,12 +98,6 @@
         box-shadow: 0 1px 4px 0 var(--color-shadow);
     }
 
-    .contact-link:hover {
-        background: var(--color-accent);
-        color: var(--color-text-on-primary);
-        box-shadow: 0 8px 20px var(--color-shadow-hover);
-    }
-
     .icon {
         font-size: 1.4rem;
     }
@@ -118,6 +112,14 @@
         height: 100%;
         border: none;
         border-radius: 0;
+    }
+
+    @media (hover: hover) {
+        .contact-link:hover {
+            background: var(--color-accent);
+            color: var(--color-text-on-primary);
+            box-shadow: 0 8px 20px var(--color-shadow-hover);
+        }
     }
 
     @media (max-width: 1024px) {

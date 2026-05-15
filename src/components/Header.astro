@@ -81,13 +81,6 @@ import logoCombinado from '../assets/logocombinado.png';
         text-shadow: var(--color-shadow-text-on-primary);
     }
 
-    .center-bar a:hover {
-        background: var(--color-primary-lighter);
-        color: var(--color-accent);
-        text-shadow: none;
-        box-shadow: 0 2px 8px var(--color-shadow);
-    }
-
     .right-bar a {
         color: var(--color-white);
         font-weight: 700;
@@ -99,13 +92,6 @@ import logoCombinado from '../assets/logocombinado.png';
         font-size: 1.2rem;
         text-shadow: var(--color-shadow-text-on-primary);
         box-shadow: 0 2px 8px var(--color-shadow);
-    }
-
-    .right-bar a:hover {
-        background: var(--color-primary-lighter);
-        color: var(--color-accent);
-        text-shadow: none;
-        box-shadow: 0 4px 12px var(--color-shadow);
     }
 
     .hamburger {
@@ -126,6 +112,22 @@ import logoCombinado from '../assets/logocombinado.png';
     @keyframes fadeInMenu {
         from {opacity: 0; transform: translateY(-10px);}
         to {opacity: 1; transform: translateY(0);}
+    }
+
+    @media (hover: hover) {
+        .right-bar a:hover {
+            background: var(--color-primary-lighter);
+            color: var(--color-accent);
+            text-shadow: none;
+            box-shadow: 0 4px 12px var(--color-shadow);
+        }
+
+        .center-bar a:hover {
+            background: var(--color-primary-lighter);
+            color: var(--color-accent);
+            text-shadow: none;
+            box-shadow: 0 2px 8px var(--color-shadow);
+        }
     }
 
     @media (max-width: 1024px) {
@@ -181,10 +183,6 @@ import logoCombinado from '../assets/logocombinado.png';
             transform-origin: 4px;
         }
 
-        .hamburger:hover span {
-            background: var(--color-accent);
-        }
-
         .hamburger.active span:nth-child(1) {
             transform: rotate(45deg);
         }
@@ -217,12 +215,6 @@ import logoCombinado from '../assets/logocombinado.png';
             white-space: nowrap;
             font-size: 1.8rem;
             text-shadow: var(--color-shadow-text-on-primary);
-        }
-
-        .mobile-menu a:hover {
-            background: var(--color-primary-lighter, #e0f7f8);
-            color: var(--color-accent, #1e8a8e);
-            box-shadow: 0 2px 8px var(--color-shadow);
         }
 
         header {

@@ -51,11 +51,6 @@
     transition: all 0.3s ease;
 }
 
-.revista-container:hover {
-    box-shadow: 0 8px 20px var(--color-shadow-hover);
-    border-color: var(--color-primary);
-}
-
 .revista-container img {
     display: block;
     width: 100%;
@@ -206,11 +201,6 @@ body.modal-open {
     transition: background-color 0.3s ease;
 }
 
-.zoom-close:hover {
-    background: var(--color-primary);
-    color: var(--color-white);
-}
-
 .zoom-controls {
     position: absolute;
     bottom: 20px;
@@ -238,12 +228,6 @@ body.modal-open {
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.zoom-btn:hover {
-    background: var(--color-primary);
-    color: var(--color-white);
-    transform: scale(1.1);
 }
 
 .zoom-btn:active {
@@ -291,12 +275,6 @@ body.modal-open {
     z-index: 10000;
 }
 
-.nav-btn:hover {
-    background: var(--color-primary);
-    color: var(--color-white);
-    transform: translateY(-50%) scale(1.1);
-}
-
 .nav-btn:active {
     transform: translateY(-50%) scale(0.95);
 }
@@ -316,17 +294,41 @@ body.modal-open {
     transform: translateY(-50%) scale(1);
 }
 
-.nav-btn:disabled:hover {
-    background: rgba(0, 0, 0, 0.2);
-    color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-50%) scale(1);
+@media (hover: hover) {
+    .revista-container:hover {
+        box-shadow: 0 8px 20px var(--color-shadow-hover);
+        border-color: var(--color-primary);
+    }
+
+    .zoom-close:hover {
+        background: var(--color-primary);
+        color: var(--color-white);
+    }
+
+    .zoom-btn:hover {
+        background: var(--color-primary);
+        color: var(--color-white);
+        transform: scale(1.1);
+    }
+
+    .nav-btn:hover {
+        background: var(--color-primary);
+        color: var(--color-white);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .nav-btn:disabled:hover {
+        background: rgba(0, 0, 0, 0.2);
+        color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-50%) scale(1);
+    }
 }
 
-    @media (max-width: 768px) {
-        .revista {
-            margin: 20px 0;
-        }
+@media (max-width: 768px) {
+    .revista {
+        margin: 20px 0;
     }
+}
 </style>
 
 <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>

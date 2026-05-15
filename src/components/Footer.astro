@@ -85,10 +85,6 @@ import logoCombinado from '../assets/logocombinado.png';
         margin: auto;
     }
 
-    footer a:hover {
-        color: var(--color-primary-light);
-    }
-
     .logo-combinado {
         height: 60px;
         width: auto;
@@ -108,22 +104,12 @@ import logoCombinado from '../assets/logocombinado.png';
         margin-top: 10px;
     }
 
-    .social-pills a:hover {
-        background: var(--color-white);
-        color: var(--color-primary-dark);
-    }
-
     .contact-item {
         display: flex;
         align-items: center;
         gap: 12px;
         margin-bottom: 15px;
-    }
-
-    .contact-item a:hover {
-        opacity: 1;
-        color: var(--color-primary-light);
-    }
+    } 
 
     .bottom-container {
         max-width: 1200px;
@@ -140,6 +126,22 @@ import logoCombinado from '../assets/logocombinado.png';
         color: var(--color-white);
         text-decoration: none;
         font-weight: 700;
+    }
+    
+    @media (hover: hover) {
+        .contact-item a:hover {
+            opacity: 1;
+            color: var(--color-primary-light);
+        }
+
+        footer a:hover {
+            color: var(--color-primary-light);
+        }
+
+        .social-pills a:hover {
+            background: var(--color-white);
+            color: var(--color-primary-dark);
+        }
     }
 
     @media (max-width: 768px) {

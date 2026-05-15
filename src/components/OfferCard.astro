@@ -23,10 +23,11 @@ import oferta20 from '../assets/ofertas/oferta-20.webp';
 import oferta21 from '../assets/ofertas/oferta-21.webp';
 import oferta22 from '../assets/ofertas/oferta-22.webp';
 import oferta23 from '../assets/ofertas/oferta-23.webp';
+import oferta24 from '../assets/ofertas/oferta-24.webp';
 ---
 
 <article class="offer-card">
-    {[oferta1, oferta2, oferta3, oferta4, oferta5, oferta6, oferta7, oferta8, oferta9, oferta10, oferta11, oferta12, oferta13, oferta14, oferta15, oferta16, oferta17, oferta18, oferta19, oferta20, oferta21, oferta22, oferta23].map((img, index) => (
+    {[oferta1, oferta2, oferta3, oferta4, oferta5, oferta6, oferta7, oferta8, oferta9, oferta10, oferta11, oferta12, oferta13, oferta14, oferta15, oferta16, oferta17, oferta18, oferta19, oferta20, oferta21, oferta22, oferta23, oferta24].map((img, index) => (
         <div class="card-wrapper">
             <Image 
                 src={img} 
@@ -90,13 +91,6 @@ import oferta23 from '../assets/ofertas/oferta-23.webp';
         transform: translateY(0);
     }
 
-    .scroll-to-top:hover {
-        background: var(--color-primary, #4dd4d8);
-        border-color: var(--color-accent, #1e8a8e);
-        transform: translateY(-4px) scale(1.06);
-        box-shadow: 0 8px 24px var(--color-shadow-hover);
-    }
-
     .scroll-to-top i {
         color: var(--color-accent, #1e8a8e);
         font-size: 1.5rem;
@@ -104,8 +98,17 @@ import oferta23 from '../assets/ofertas/oferta-23.webp';
         filter: drop-shadow(var(--color-shadow-text-on-primary, 0 1px 3px rgba(0,0,0,0.2)));
     }
 
-    .scroll-to-top:hover i {
-        color: var(--color-text-on-primary, #fff);
+    @media (hover: hover) {
+        .scroll-to-top:hover i {
+            color: var(--color-text-on-primary, #fff);
+        }
+
+        .scroll-to-top:hover {
+            background: var(--color-primary, #4dd4d8);
+            border-color: var(--color-accent, #1e8a8e);
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 8px 24px var(--color-shadow-hover);
+        }
     }
 
     @media (max-width: 1280px) {

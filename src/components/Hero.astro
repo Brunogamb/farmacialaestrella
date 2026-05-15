@@ -91,12 +91,6 @@ import adheridoFTCheq from '../assets/adherido.webp';
         margin: 0 auto;
     }
 
-    .hero-cards a:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px var(--color-shadow-hover);
-        border-color: var(--color-primary);
-    }
-
     .hero-cards a img,
     .hero-cards a .astro-image {
         width: 100%;
@@ -124,6 +118,14 @@ import adheridoFTCheq from '../assets/adherido.webp';
     .infobanner img {
         width: 100%;
         height: 100%;
+    }
+
+    @media (hover: hover) {
+        .hero-cards a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--color-shadow-hover);
+            border-color: var(--color-primary);
+        }
     }
 
     @media (max-width: 768px) {
