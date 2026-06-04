@@ -14,20 +14,20 @@ import oferta11 from '../assets/ofertas/oferta-11.webp';
 import oferta12 from '../assets/ofertas/oferta-12.webp';
 import oferta13 from '../assets/ofertas/oferta-13.webp';
 import oferta14 from '../assets/ofertas/oferta-14.webp';
-import oferta15 from '../assets/ofertas/oferta-15.webp';
-import oferta16 from '../assets/ofertas/oferta-16.webp';
-import oferta17 from '../assets/ofertas/oferta-17.webp';
-import oferta18 from '../assets/ofertas/oferta-18.webp';
-import oferta19 from '../assets/ofertas/oferta-19.webp';
-import oferta20 from '../assets/ofertas/oferta-20.webp';
-import oferta21 from '../assets/ofertas/oferta-21.webp';
-import oferta22 from '../assets/ofertas/oferta-22.webp';
-import oferta23 from '../assets/ofertas/oferta-23.webp';
-import oferta24 from '../assets/ofertas/oferta-24.webp';
+// import oferta15 from '../assets/ofertas/oferta-15.webp';
+// import oferta16 from '../assets/ofertas/oferta-16.webp';
+// import oferta17 from '../assets/ofertas/oferta-17.webp';
+// import oferta18 from '../assets/ofertas/oferta-18.webp';
+// import oferta19 from '../assets/ofertas/oferta-19.webp';
+// import oferta20 from '../assets/ofertas/oferta-20.webp';
+// import oferta21 from '../assets/ofertas/oferta-21.webp';
+// import oferta22 from '../assets/ofertas/oferta-22.webp';
+// import oferta23 from '../assets/ofertas/oferta-23.webp';
+// import oferta24 from '../assets/ofertas/oferta-24.webp';
 ---
 
 <article class="offer-card">
-    {[oferta1, oferta2, oferta3, oferta4, oferta5, oferta6, oferta7, oferta8, oferta9, oferta10, oferta11, oferta12, oferta13, oferta14, oferta15, oferta16, oferta17, oferta18, oferta19, oferta20, oferta21, oferta22, oferta23, oferta24].map((img, index) => (
+    {[oferta1, oferta2, oferta3, oferta4, oferta5, oferta6, oferta7, oferta8, oferta9, oferta10, oferta11, oferta12, oferta13, oferta14].map((img, index) => (
         <div class="card-wrapper">
             <Image 
                 src={img} 
@@ -53,7 +53,8 @@ import oferta24 from '../assets/ofertas/oferta-24.webp';
 
     .card-wrapper {
         width: 100%;
-        height: 680px;
+        /* height: 680px; */
+        height: 760px;
         overflow: hidden; 
         border-radius: 25px;
         box-shadow: 0 4px 12px var(--color-shadow);
@@ -61,7 +62,7 @@ import oferta24 from '../assets/ofertas/oferta-24.webp';
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-top: 40px; /* Remover al cambiar imagenes nuevamente */
+        /* padding-top: 40px; Remover al cambiar imagenes nuevamente */
     }
 
     .scroll-to-top {
