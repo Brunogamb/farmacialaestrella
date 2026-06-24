@@ -2,65 +2,54 @@
 import { Image } from 'astro:assets';
 import ofertaBanner from '../assets/ofertas/ofertabanner.webp';
 import videoSrc from '../assets/videos/videofarmaonline.mp4';
-import consumax10off from '../assets/consumax10off.webp';
 import adheridoFTCheq from '../assets/adherido.webp';
 ---
 
 <main>
     <section class="hero-cards">
-        <a href="/ofertas">
-            <Image 
-                src={ofertaBanner} 
-                alt="Farmacia La Estrella - Productos farmacéuticos y ofertas en Paraná, Entre Ríos" 
-                class="offer-banner" 
-                loading="eager" 
+        <a href="/ofertas" class="hero-banner-link">
+            <Image
+                src={ofertaBanner}
+                alt="Farmacia La Estrella - Productos farmacéuticos y ofertas en Paraná, Entre Ríos"
+                class="offer-banner"
+                loading="eager"
                 fetchpriority="high"
                 sizes="(max-width: 768px) 95vw, 1220px"
             />
         </a>
 
-        <a href="/ofertas">
-            <Image 
-            src={consumax10off} 
-            alt="Promoción: Compra más y ahorra más con nuestro descuento por volumen" 
-            loading="eager" 
-            fetchpriority="high"
-            sizes="(max-width: 768px) 95vw, 1220px"
-        />
-        </a>
-
-        <a href="https://www.farmaonline.com/" class="card-banner videobanner" target="_blank" rel="noopener noreferrer" aria-label="Visitar Farmaonline.com">
+        <a href="https://www.farmaonline.com/" class="hero-video-link" target="_blank" rel="noopener noreferrer" aria-label="Visitar Farmaonline.com">
             <video src={videoSrc} autoplay muted playsinline loop>
                 Tu navegador no soporta el elemento de video.
             </video>
         </a>
 
-        <a href="https://www.ftcheq.com.ar/" class="ftcheq card-banner infobanner" target="_blank" rel="noopener noreferrer" aria-label="Comercio adherido a FTCheq">
-            <Image src={adheridoFTCheq} alt="Comercio adherido a FTCheq" loading="eager"/>
+        <a href="https://www.ftcheq.com.ar/" class="hero-ftcheq-link" target="_blank" rel="noopener noreferrer" aria-label="Comercio adherido a FTCheq">
+            <Image src={adheridoFTCheq} alt="Comercio adherido a FTCheq" loading="lazy" />
         </a>
+
     </section>
 </main>
 
 <style>
     main {
-        display: flex; 
+        display: flex;
         flex-direction: column;
         text-align: center;
         color: var(--color-text);
-        max-width: 1240px;
+        max-width: 1040px;
         margin: 40px auto;
         padding: 0 20px;
     }
 
     .hero-cards {
-        display: grid;
-        grid-template-columns: 1.88fr 1fr;
-        grid-auto-rows: auto;
+        display: flex;
+        flex-direction: column;
         gap: 20px;
-        align-items: start;
     }
 
-    .hero-cards a {
+    .hero-video-link, .hero-banner-link, .hero-ftcheq-link {
+        display: block;
         overflow: hidden;
         border-radius: 25px;
         box-shadow: 0 4px 12px var(--color-shadow);
@@ -68,60 +57,40 @@ import adheridoFTCheq from '../assets/adherido.webp';
         transition: all 0.3s ease;
     }
 
-    .hero-cards a:nth-child(1) {
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    .hero-cards a:nth-child(2) {
-        grid-column: 2;
-        grid-row: 1 / 3;
-        aspect-ratio: 1 / 1.32;
-        width: 100%;
-    }
-
-    .hero-cards a:nth-child(3) {
-        grid-column: 1;
-        grid-row: 2 / 4;
-    }
-
-    .hero-cards a:nth-child(4) {
-        grid-column: 2;
-        grid-row: 3;
-        margin: 0 auto;
-    }
-
-    .hero-cards a img,
-    .hero-cards a .astro-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        display: block;
-    }
-
-    .hero-cards video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-    .videobanner {
+    .hero-video-link {
         aspect-ratio: 16 / 9;
     }
 
-    .offer-banner {
-        aspect-ratio: 15 / 6;
-    }
-
-    .infobanner img {
+    .hero-video-link video {
         width: 100%;
         height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .hero-banner-link img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .hero-ftcheq-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-ftcheq-link img {
+        max-height: 180px;
+        width: auto;
+        object-fit: cover;
+        display: block;
     }
 
     @media (hover: hover) {
-        .hero-cards a:hover {
+        .hero-video-link:hover,
+        .hero-banner-link:hover,
+        .hero-ftcheq-link:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 20px var(--color-shadow-hover);
             border-color: var(--color-primary);
@@ -138,37 +107,14 @@ import adheridoFTCheq from '../assets/adherido.webp';
             max-width: 95%;
             margin: auto;
             gap: 15px;
-            grid-template-columns: 1fr;
         }
 
-        .hero-cards a:nth-child(2) {
-            grid-column: 1;
-            grid-row: 2;
+        .hero-video-link {
+            aspect-ratio: 16 / 9;
         }
 
-        .hero-cards a:nth-child(3) {
-            grid-column: 1;
-            grid-row: 3;
-        }
-
-        .hero-cards a:nth-child(4) {
-            grid-column: 1;
-            grid-row: 4;
-        }
-
-        .offer-banner {
-            aspect-ratio: 16 / 7;
-        }
-
-        .videobanner {
-            aspect-ratio: 13.5 / 9;
-        }
-
-        .ftcheq img {
-            max-width: 240px;
-            max-height: 240px;
-            margin: auto;
-            transition: all 0.3s ease;
+        .hero-ftcheq-link img {
+            max-height: 60px;
         }
     }
 </style>
